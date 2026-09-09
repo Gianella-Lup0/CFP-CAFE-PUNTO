@@ -253,3 +253,28 @@ h1, h2, h3 { font-family: "Fraunces", serif; }
 #historial ul { display: flex; flex-direction: column; gap: 10px; padding: 0; list-style: none; margin: 0; }
 #historial li { display: flex; justify-content: space-between; padding: 12px; border: 1px solid #31483a; border-radius: 8px; font-size: 13px; color: #9bb0a2; }
 #historial li strong { color: #d9f0ce; }
+
+
+/* BOTÓN PARA RECONSTRUIR / RESTABLECER STOCK */
+#restock-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: 1px solid #555d58;
+  border-radius: 8px;
+  color: #f7f1e8;
+  background: #2c322e;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#restock-button:hover {
+  border-color: #f0a05a;
+  color: #211713;
+  background: #f0a05a;
+}
