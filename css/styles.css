@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  padding-top: 90px;
+  min-width: 320px;
+  color: #f7f1e8;
+  background: #121413;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-family: "Fraunces", serif; }
+
+/* NAVBAR FIX */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #181c1a;
+  border-bottom: 1px solid #353a37;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #202522;
+  padding: 4px;
+  border: 1px solid #363b38;
+  border-radius: 12px;
+}
+
+.nav-link {
+  color: #9da39f;
+  background: transparent;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: #211713;
+  background: #f0a05a;
+}
+
+.brand, .machine-status, .panel-heading, .control-row, .total-row, .credit-box, .pickup-tray {
+  display: flex;
+  align-items: center;
+}
+
+.brand { gap: 12px; color: #f7f1e8; text-decoration: none; }
+.brand-mark, .step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: #211713;
+  background: #f0a05a;
+  font-weight: 700;
+}
+.brand-mark { width: 44px; height: 44px; font-family: "Fraunces", serif; }
+.brand-copy strong, .brand-copy small, .machine-status small, .machine-status strong { display: block; }
+.brand-copy strong { font-family: "Fraunces", serif; font-size: 19px; line-height: 1; }
+.brand-copy small { color: #9da39f; font-size: 11px; }
+
+.machine-status {
+  gap: 10px;
+  min-width: 120px;
+  padding: 6px 12px;
+  border: 1px solid #3b413d;
+  border-radius: 12px;
+  background: #202522;
+}
+.machine-status small { color: #919792; font-size: 10px; text-transform: uppercase; }
+.machine-status strong { font-size: 13px; }
+
+.status-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7bd977;
+  box-shadow: 0 0 0 4px rgba(123, 217, 119, 0.12);
+}
+
+/* LANDING LAYOUT */
+.machine-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 60px auto;
+}
+
+.machine-panel, .order-panel {
+  width: 100%;
+  border: 1px solid #363b38;
+  border-radius: 20px;
+  background: #202522;
+  padding: 24px;
+}
+
+.panel-heading { gap: 14px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #3a403c; }
+.step-number { width: 40px; height: 40px; font-size: 16px; }
+.eyebrow { margin-bottom: 2px; color: #f0a05a; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.panel-heading h1, .panel-heading h2 { margin-bottom: 0; font-size: 24px; line-height: 1.1; }
+
+/* DRINKS GRID */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.drink-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 2px solid #373d39;
+  border-radius: 14px;
+  background: #181c1a;
+}
+
+.drink-card.is-selected { border-color: #f0a05a; box-shadow: 0 0 0 3px rgba(240, 160, 90, 0.12); }
+.drink-image { position: relative; width: 100%; height: 140px; overflow: hidden; background: #3b2b22; }
+.drink-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+
+.selected-label, .soldout-label {
+  position: absolute;
+  top: 8px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  display: none;
+}
+.selected-label { right: 8px; color: #241811; background: #f0a05a; }
+.soldout-label { left: 8px; color: #f7f1e8; background: #4a3630; }
+
+.drink-card.is-selected .selected-label { display: block; }
+.drink-card.is-soldout .soldout-label { display: block; }
+.drink-card.is-soldout { border-color: #3a3530; opacity: 0.55; }
+
+.stock-note { display: block; margin: -2px 0 8px; color: #8a9089; font-size: 11px; }
+.drink-content { display: flex; flex: 1; flex-direction: column; padding: 14px; }
+.drink-title { display: flex; align-items: start; justify-content: space-between; gap: 8px; }
+.drink-title h2 { margin-bottom: 4px; font-size: 18px; }
+.drink-title strong { flex: 0 0 auto; color: #f5b77f; font-size: 15px; }
+.drink-content p { flex: 1; margin-bottom: 12px; color: #aeb4b0; font-size: 12px; line-height: 1.3; }
+
+.drink-content button {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #555d58;
+  border-radius: 8px;
+  color: #f7f1e8;
+  background: #2c322e;
+  font-weight: 700;
+  cursor: pointer;
+}
+.is-selected .drink-content button { border-color: #f0a05a; color: #241811; background: #f0a05a; }
+
+/* PERSONALIZACIÓN */
+.option-group { margin: 0 0 16px; padding: 0 0 16px; border: 0; border-bottom: 1px solid #3a403c; }
+.option-group legend { width: 100%; margin-bottom: 10px; padding: 0; color: #c3c8c5; font-size: 13px; font-weight: 600; }
+
+.option-buttons, .binary-control, .money-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.option-buttons button { flex: 1; min-height: 40px; border: 1px solid #4b524e; border-radius: 8px; color: #c5cac7; background: #292e2b; font-size: 13px; cursor: pointer; }
+.option-buttons button.is-active, .binary-control button.is-active { border-color: #f0a05a; color: #281b14; background: #f0a05a; font-weight: 700; }
+
+.control-row { justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #3a403c; }
+.control-row > div:first-child strong { font-size: 14px; }
+.control-row > div:first-child small { color: #929993; font-size: 11px; }
+
+.counter-control { display: flex; align-items: center; justify-content: space-between; width: 120px; min-height: 40px; border: 1px solid #4b524e; border-radius: 8px; background: #171b19; }
+.counter-control button { width: 36px; height: 40px; border: 0; color: #f0a05a; background: transparent; font-size: 20px; cursor: pointer; }
+.binary-control button { min-width: 54px; min-height: 40px; border: 1px solid #4b524e; border-radius: 8px; color: #c5cac7; background: #292e2b; cursor: pointer; }
+
+/* PAGO Y PANTALLA */
+.order-panel { background: #2a302c; display: flex; flex-direction: column; gap: 16px; }
+.screen-status { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 12px; border: 1px solid #4c564f; border-radius: 10px; color: #d9f0ce; background: #101b15; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.machine-screen { padding: 16px; border: 1px solid #4c564f; border-radius: 12px; color: #d9f0ce; background: #101b15; }
+.screen-label { margin-bottom: 4px; color: #799181; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.machine-screen h2 { margin-bottom: 8px; font-size: 22px; }
+.order-details { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 10px; }
+.order-details span { padding: 4px 8px; border: 1px solid #31483a; border-radius: 8px; color: #9bb0a2; font-size: 11px; }
+.total-row { align-items: end; justify-content: space-between; padding-top: 10px; border-top: 1px solid #31483a; }
+.total-row span { color: #86a08f; font-size: 13px; }
+.total-row strong { font-size: 22px; }
+
+.coupon-box { padding: 12px; background: #181c1a; border: 1px solid #3a403c; border-radius: 10px; }
+.coupon-input-group { display: flex; gap: 8px; }
+.coupon-input-group input { flex: 1; padding: 8px 12px; border: 1px solid #4b524e; border-radius: 6px; background: #101b15; color: #f7f1e8; font-size: 12px; }
+.coupon-input-group button { padding: 8px 14px; border: 1px solid #f0a05a; border-radius: 6px; background: #f0a05a; color: #211713; font-weight: 700; font-size: 12px; cursor: pointer; }
+.coupon-message { margin: 6px 0 0; font-size: 11px; }
+.loyalty-badge { margin-top: 8px; padding-top: 6px; border-top: 1px dashed #3a403c; font-size: 11px; color: #aeb4b0; }
+
+.credit-box { justify-content: space-between; gap: 12px; padding: 12px 16px; border-radius: 10px; color: #1e1712; background: #f0a05a; }
+.credit-box small { font-size: 11px; }
+.credit-box strong { font-size: 20px; }
+.credit-help { padding: 4px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.34); font-size: 11px; font-weight: 700; }
+
+.payment-area > p { margin-bottom: 6px; color: #aab0ac; font-size: 12px; font-weight: 600; }
+.money-buttons button { flex: 1; min-height: 38px; border: 1px solid #555d58; border-radius: 8px; color: #f5eee5; background: #202522; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+.prepare-button { width: 100%; min-height: 44px; margin-top: 6px; border: 0; border-radius: 10px; color: #737a75; background: #3c423e; font-size: 15px; font-weight: 700; }
+.prepare-button:not(:disabled) { color: #211713; background: #f0a05a; cursor: pointer; }
+
+.secondary-actions { display: flex; gap: 8px; }
+.secondary-actions button { flex: 1; min-height: 34px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; background: transparent; }
+.cancel-button { border: 1px solid #6b4a3a; color: #d8977a; }
+.reset-button { border: 1px solid #555d58; color: #c5cac7; }
+
+.pickup-tray { justify-content: center; gap: 14px; width: 100%; min-height: 80px; padding: 12px; border: 1px solid #343a36; border-radius: 10px; background: #080a09; }
+.tray-slot { width: 64px; height: 54px; border: 2px solid #383f3a; border-bottom: 4px solid #f0a05a; border-radius: 10px; background: #111512; display: flex; align-items: center; justify-content: center; }
+.cup-icon { font-size: 26px; opacity: 0.35; }
+.pickup-copy h2 { margin-bottom: 2px; font-size: 15px; }
+.pickup-copy > p:last-child { margin-bottom: 0; color: #8f9691; font-size: 11px; }
+
+/* HISTORIAL */
+#historial ul { display: flex; flex-direction: column; gap: 10px; padding: 0; list-style: none; margin: 0; }
+#historial li { display: flex; justify-content: space-between; padding: 12px; border: 1px solid #31483a; border-radius: 8px; font-size: 13px; color: #9bb0a2; }
+#historial li strong { color: #d9f0ce; }

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interfaz de una máquina expendedora de café.">
+  <title>Café Punto | Máquina de café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a class="brand" href="#bebidas" aria-label="Café Punto, ir a las bebidas">
+        <span class="brand-mark" aria-hidden="true">CP</span>
+        <span class="brand-copy"><strong>Café Punto</strong><small>Sin esperas</small></span>
+      </a>
+
+      <nav class="navbar-nav" aria-label="Navegación principal">
+        <a href="#bebidas" class="nav-link is-active">Bebidas</a>
+        <a href="#personalizar" class="nav-link">Personalizar</a>
+        <a href="#pago" class="nav-link">Pago y Pantalla</a>
+        <a href="#historial" class="nav-link">Historial</a>
+      </nav>
+
+      <div class="machine-status" aria-label="Estado de la máquina: disponible">
+        <span class="status-light" aria-hidden="true"></span>
+        <span><small>Estado</small><strong>Disponible</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="machine-layout">
+    <!-- SECCIÓN 1: Catálogo de bebidas -->
+    <section class="machine-panel" id="bebidas" aria-labelledby="drinks-title">
+      <div class="panel-heading">
+        <span class="step-number">1</span>
+        <div><p class="eyebrow">Primer paso</p><h1 id="drinks-title"> Elegí tu café</h1></div>
+      </div>
+
+      <div class="drinks-grid">
+        <article class="drink-card" data-drink="Espresso" data-price="1800" data-stock="4">
+          <div class="drink-image"><img src="assets/images/latte.png" alt="Taza de café espresso"><span class="selected-label">Elegido</span><span class="soldout-label">Agotado</span></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Espresso</h2><strong>$1.800</strong></div>
+            <p>Café corto, aromático y de sabor intenso.</p>
+            <small class="stock-note">Quedan 4</small>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card" data-drink="Cortado" data-price="2200" data-stock="3">
+          <div class="drink-image drink-image--cortado"><img src="assets/images/latte.png" alt="Taza de café cortado"><span class="soldout-label">Agotado</span></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Cortado</h2><strong>$2.200</strong></div>
+            <p>Espresso con un toque suave de leche caliente.</p>
+            <small class="stock-note">Quedan 3</small>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card" data-drink="Latte" data-price="2800" data-stock="3">
+          <div class="drink-image drink-image--latte"><img src="assets/images/latte.png" alt="Taza de café latte"><span class="soldout-label">Agotado</span></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Latte</h2><strong>$2.800</strong></div>
+            <p>Café suave con leche cremosa y abundante espuma.</p>
+            <small class="stock-note">Quedan 3</small>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+        <article class="drink-card" data-drink="Chocolate" data-price="2500" data-stock="2">
+          <div class="drink-image drink-image--chocolate"><img src="assets/images/latte.png" alt="Taza de chocolate caliente"><span class="soldout-label">Agotado</span></div>
+          <div class="drink-content">
+            <div class="drink-title"><h2>Chocolate</h2><strong>$2.500</strong></div>
+            <p>Chocolate caliente, dulce y bien cremoso.</p>
+            <small class="stock-note">Quedan 2</small>
+            <button type="button">Elegir</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Personalización -->
+    <section class="machine-panel" id="personalizar" aria-labelledby="customize-title">
+      <div class="panel-heading">
+        <span class="step-number">2</span>
+        <div><p class="eyebrow">Segundo paso</p><h2 id="customize-title">Personalizalo</h2></div>
+      </div>
+
+      <fieldset class="option-group">
+        <legend>Tamaño del vaso</legend>
+        <div class="option-buttons size-buttons"><button type="button" data-size="Chico" data-extra="0">Chico</button><button class="is-active" type="button" data-size="Mediano" data-extra="300">Mediano</button><button type="button" data-size="Grande" data-extra="600">Grande</button></div>
+      </fieldset>
+      <fieldset class="option-group">
+        <legend>Intensidad</legend>
+        <div class="option-buttons intensity-buttons"><button type="button" data-intensity="Suave" data-extra="0">Suave</button><button class="is-active" type="button" data-intensity="Media" data-extra="0">Media</button><button type="button" data-intensity="Intensa" data-extra="200">Intensa (+$200)</button></div>
+      </fieldset>
+
+      <div class="control-row">
+        <div><strong>Azúcar</strong><small> Cucharaditas</small></div>
+        <div class="counter-control" aria-label="Cantidad de azúcar: 0"><button id="decrease-sugar" type="button" aria-label="Quitar azúcar">−</button><strong id="sugar-count">0</strong><button id="increase-sugar" type="button" aria-label="Agregar azúcar">+</button></div>
+      </div>
+      <div class="control-row">
+        <div><strong>Leche extra</strong><small> Agrega $300</small></div>
+        <div class="binary-control milk-buttons"><button class="is-active" type="button" data-milk="false">No</button><button type="button" data-milk="true">Sí</button></div>
+      </div>
+<!--
+      <div class="control-row mode-switch-row">
+        <div><strong>Pago Exacto</strong><small> No da vuelto (deshabilita vuelto)</small></div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="exact-pay-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+-->
+    </section>
+
+    <!-- SECCIÓN 3: Pago y Pantalla -->
+    <section class="order-panel" id="pago" aria-labelledby="order-title">
+      <div class="panel-heading">
+        <span class="step-number">3</span>
+        <div><p class="eyebrow">Tercer paso</p><h2>Pago y Pantalla</h2></div>
+      </div>
+
+      <div class="screen-status" id="machine-message"><span class="status-light" aria-hidden="true"></span>Elegí una bebida</div>
+      
+      <div class="machine-screen">
+        <p class="screen-label">Tu pedido</p>
+        <h2 id="order-title">Sin selección</h2>
+        <div class="order-details"><span id="order-size">Mediano</span><span id="order-intensity">Intensidad media</span><span id="order-sugar">Sin azúcar</span><span id="order-milk">Sin leche extra</span></div>
+        <div class="total-row"><span>Total</span><strong id="order-total">$0</strong></div>
+      </div>
+
+      <div class="coupon-box">
+        <div class="coupon-input-group">
+          <input type="text" id="coupon-input" placeholder="Código de cupón (ej. CAFE10)" aria-label="Código de descuento">
+          <button type="button" id="apply-coupon-btn">Aplicar</button>
+        </div>
+        <p class="coupon-message" id="coupon-message"></p>
+        <div class="loyalty-badge" id="loyalty-badge">
+          <span>Programa de fidelidad:</span> <strong id="loyalty-status">0/5 para café gratis</strong>
+        </div>
+      </div>
+
+      <div class="credit-box">
+        <span><small>Crédito ingresado</small><strong id="order-credit">$0</strong></span>
+        <span class="credit-help" id="credit-help">Elegí una bebida</span>
+      </div>
+
+      <div class="payment-area">
+        <p>Ingresá dinero</p>
+        <div class="money-buttons"><button type="button" data-amount="500">+$500</button><button type="button" data-amount="1000">+$1.000</button><button type="button" data-amount="2000">+$2.000</button><button type="button" data-amount="5000">+$5.000</button></div>
+      </div>
+
+      <button class="prepare-button" id="prepare-button" type="button" disabled>Preparar café</button>
+
+      <div class="secondary-actions">
+        <button class="cancel-button" id="cancel-button" type="button">Cancelar pedido</button>
+        <button class="reset-button" id="reset-button" type="button">Reiniciar pedido</button>
+      </div>
+
+      <p class="prepare-help" id="change-message">Completá el pago para continuar.</p>
+
+      <section class="pickup-tray" aria-labelledby="pickup-title">
+        <div class="tray-slot" id="pickup-slot" aria-live="polite"><span class="cup-icon">☕</span><strong id="pickup-drink"></strong></div>
+        <div class="pickup-copy"><p class="eyebrow">Salida del pedido</p><h2 id="pickup-title">Retirá tu café aquí</h2><p id="pickup-message">La bandeja se iluminará cuando tu bebida esté lista.</p></div>
+      </section>
+
+      <p class="session-stats">Cafés preparados en esta sesión: <strong id="session-count">0</strong></p>
+    </section>
+
+    <!-- SECCIÓN 4: Historial -->
+    <section class="order-panel" id="historial" aria-labelledby="history-title">
+      <div class="panel-heading">
+        <span class="step-number">📜</span>
+        <div><p class="eyebrow">Registros</p><h2 id="history-title">Últimos pedidos</h2></div>
+      </div>
+      <ul id="history-list"><li class="history-empty">Todavía no preparaste ningún café.</li></ul>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
